@@ -4,29 +4,31 @@ import { charMap, digitToLetter } from './constants.js';
 function convertStringToNumber(string) {
   let stringArr = string.split('');
 
-  return stringArr.map((char) => charMap[char]);
+  return stringArr.map((char) => charMap[char])?.join(' ');
 }
 
-console.log(convertStringToNumber('Titanic'));
-console.log(convertStringToNumber('Avenger Endgame'));
+console.log(convertStringToNumber('Titanic')); // 7 5 2 9 4 5 8
+console.log(convertStringToNumber('Avenger Endgame')); // 0 0 7 4 6 7 2 0 2 4 8 6 9 4 7
 
 // nomor 2
 function alternateSum(numbers) {
-  let sum = numbers[0];
+  const numberArr = numbers.split(' ')?.map(Number);
 
-  for (let i = 1; i < numbers.length; i++) {
+  let sum = numberArr[0];
+
+  for (let i = 1; i < numberArr.length; i++) {
     if (i % 2 === 1) {
-      sum += numbers[i];
+      sum += numberArr[i];
     } else {
-      sum -= numbers[i];
+      sum -= numberArr[i];
     }
   }
 
   return sum;
 }
 
-console.log(alternateSum(convertStringToNumber('Titanic')));
-console.log(alternateSum(convertStringToNumber('Avenger Endgame')));
+console.log(alternateSum(convertStringToNumber('Titanic'))); // 12
+console.log(alternateSum(convertStringToNumber('Avenger Endgame'))); // -16
 
 // nomor 3
 function convertNumberToLetter(number) {
@@ -51,19 +53,19 @@ function convertNumberToLetter(number) {
     }
   }
 
-  return digits.map((d) => digitToLetter[d]).join('');
+  return digits.map((d) => digitToLetter[d]).join(' ');
 }
 
 console.log(
   convertNumberToLetter(alternateSum(convertStringToNumber('Titanic')))
-);
+); // A B E F I A B A B
 console.log(
-  convertNumberToLetter(alternateSum(convertStringToNumber('Avenger Endgame')))
+  convertNumberToLetter(alternateSum(convertStringToNumber('Avenger Endgame'))) // A B E F I J A B
 );
 
 // nomor 4
 function convertLettersToOtherLetter(letters) {
-  const letterArr = letters.split('');
+  const letterArr = letters.split(' ');
 
   // Step 1: Convert letters to digits
   const digits = letterArr.map((char) => charMap[char]);
@@ -88,14 +90,14 @@ function convertLettersToOtherLetter(letters) {
     .slice(0, digits.length - 2)
     .concat(lastTwoDigits)
     .map((d) => digitToLetter[d])
-    .join('');
+    .join(' ');
 }
 
 console.log(
   convertLettersToOtherLetter(
     convertNumberToLetter(alternateSum(convertStringToNumber('Titanic')))
   )
-);
+); // A B E F I A B B E
 
 console.log(
   convertLettersToOtherLetter(
@@ -103,11 +105,11 @@ console.log(
       alternateSum(convertStringToNumber('Avenger Endgame'))
     )
   )
-);
+); // A B E F I J B E
 
 // nomor 5
 function convertLettersToDigits(letters) {
-  const letterArr = letters.split('');
+  const letterArr = letters.split(' ');
 
   // Step 1: Convert letters to digits
   const digits = letterArr.map((char) => charMap[char]);
@@ -120,7 +122,7 @@ function convertLettersToDigits(letters) {
     digit % 2 === 0 ? digit + 1 : digit
   );
 
-  return transformed;
+  return transformed?.join(' ');
 }
 
 console.log(
@@ -129,7 +131,7 @@ console.log(
       convertNumberToLetter(alternateSum(convertStringToNumber('Titanic')))
     )
   )
-);
+); // 1 1 3 3 5 1 1 1 3
 
 console.log(
   convertLettersToDigits(
@@ -139,4 +141,4 @@ console.log(
       )
     )
   )
-);
+); // 1 1 3 3 5 5 1 3
