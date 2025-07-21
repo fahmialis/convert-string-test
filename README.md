@@ -2,8 +2,7 @@
 
 1. Clone the Repository
 
-    `git clone https://github.com/your-username/abjad-converter-cli.git
-    cd abjad-converter-cli`
+    `git clone https://github.com/fahmialis/convert-string-test`
 
 2. Run the App
 
