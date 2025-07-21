@@ -8,6 +8,4 @@
 
     `node index.js`
 
-You will be prompted to enter a sentence. The app will then display the result of the transformation based on predefined mapping rules.
-
-    ✅ No dependencies required — pure Node.js.
+ ✅ No dependencies required — pure Node.js.
